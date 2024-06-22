@@ -14,4 +14,4 @@ while True:
 
         print(f"Atraso maximo: {atraso}")
     except EOFError:
-        break
+        
