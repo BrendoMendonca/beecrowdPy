@@ -11,9 +11,7 @@ while(True):
         for i in range(0, len(n2)):
             if(n2[i] == n1[0]):
                 sequencia = []
-                for j in range(i, len(n1), tam_n1):
-                    sequencia.append(n2[j:j+tam_n1-1])
-                if(sequencia[0] == n1):
+                if(sequencia[i:i+tam_n1] == n1):
                     qnt_sub += 1
                     posicao = i+1
         
