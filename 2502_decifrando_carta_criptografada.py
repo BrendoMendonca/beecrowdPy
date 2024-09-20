@@ -1,20 +1,32 @@
-import re
-c, n = map(int, input().split())#recebimento do tamanho das cifras e da quantidade de frases
+while(True):
+    try:
+        c, n = map(int, input().split())#recebimento do tamanho das cifras e da quantidade de frases
 
-#recebimento das cifras
-cifra_1 = input()
-cifra_2 = input()
+        
+        decifra = {}#dicionário para recebimento dos caracteres usados para decifrar as palavras
+        
+        #recebimento das cifras
+        cifra_1 = input()
+        cifra_2 = input()
 
+        #cifras com letras minusculas
+        lowerCifra_1 = cifra_1.lower()
+        lowerCifra_2 = cifra_2.lower()
 
-for _ in range(n):#recebimento das sentenças
-    sentenca = input().upper()
-    
-    for caractere in sentenca:
-        for indice, (c1, c2) in enumerate (zip(cifra_1, cifra_2)):
-            if caractere == c2:
-                sentenca = sentenca.replace(caractere, cifra_1[indice])
-            if caractere == c1:
-                sentenca = sentenca.replace(caractere, cifra_2[indice])
-                
+        #preenchimento do dicionário
+        for i in range(c):
+            #mapeamento dos caracteres da cifra 1 e da cifra 2
+            decifra[cifra_1[i]] = cifra_2[i]#a chave 'cifra_1[i]' recebe o valor "cifra_2[i]"
+            decifra[cifra_2[i]] = cifra_1[i]
+            decifra[lowerCifra_1[i]] = lowerCifra_2[i]
+            decifra[lowerCifra_2[i]] = lowerCifra_1[i]
 
-    print(sentenca)
+        #recebimento das sentenças
+        for _ in range(n):
+            sentenca = input()
+            for letra in sentenca:#verifica cada caractere da sentença e imprime de acordo com a tradução
+                print(decifra.get(letra, letra), end='')#o método get() verifica se o caractere está no dicionário de decifra
+            print('')
+        print()
+    except EOFError:
+        break
